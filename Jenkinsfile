@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'angular/ngcontainer:latest' }
+    docker { image 'trion/ng-cli-karma:1.2.1' }
   }
   stages {
     stage('Install') {
