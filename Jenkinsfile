@@ -1,18 +1,5 @@
-#!groovy
-
-properties(
-    [    // To discard old build
-        [$class: 'BuildDiscarderProperty', strategy:
-        // Manages how long to keep records of the builds.
-          [$class: 'LogRotator', artifactDaysToKeepStr: '14', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '60']],
-        pipelineTriggers(
-          [
-              pollSCM('H/15 * * * *'),
-              cron('@daily'),
-          ]
-        )
-    ]
-)
+pipeline 
+ {
 node {
 
     stage('Checkout') {
@@ -60,3 +47,4 @@ node {
         echo "Deploying..."
     }
 }
+ }
