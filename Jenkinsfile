@@ -10,13 +10,13 @@ node {
     docker.image('trion/ng-cli-karma:1.2.1').inside {
       stage('NPM Install') {
           // silent warn messages
-          withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+          withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
               sh 'npm install'
           }
       }
 
       stage('Test') {
-          withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
+          withEnv(['CHROME_BIN=/usr/bin/chromium-browser']) {
             sh 'ng test --progress=false --watch false'
           }
           // add a reporter that creates JUnit XML reports
@@ -43,6 +43,6 @@ node {
 
     stage('Deploy') {
         milestone()
-        echo "Deploying..."
+        echo 'Deploying...'
     }
 }
