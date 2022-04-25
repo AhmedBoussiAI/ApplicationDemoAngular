@@ -1,5 +1,4 @@
-pipeline 
- {
+
 node {
 
     stage('Checkout') {
@@ -47,4 +46,3 @@ node {
         echo "Deploying..."
     }
 }
- }
