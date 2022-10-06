@@ -5,7 +5,7 @@ pipeline {
        } 
    } 
   environment {
-         def BUILDVERSION = sh(script: 'echo `date +%F-%T`', returnStdout: True).trim()
+         def BUILDVERSION = sh(script: "echo `date +%F-%T`", returnStdout: true).trim()
      } 
    stages { 
        stage('Checkout') { 
@@ -24,7 +24,7 @@ pipeline {
  stage('Test') { 
     steps { 
          script { 
-         withEnv(['CHROME_BIN=/usr/bin/chromium-browser']) { 
+         withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) { 
             sh 'ng test --progress=false --watch false' 
           } 
        }
@@ -48,7 +48,7 @@ pipeline {
    stage('Nexus Upload Stage') {
      agent none 
      steps { 
-        withCredentials([[$Class: 'UsernamePasswordMultiBinding', credentialsId: 'nexus_manvenuser',usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'nexus_manvenuser',usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                sh 'curl -v -u ${USERNAME}:${PASSWORD} --upload-file dist.tar.gz http://artefact.focus.com.tn:8081/repository/RobotDeploy/angular/releases/release-$BUILDVERSION/dist.tar.gz' 
            } 
        } 
