@@ -5,7 +5,7 @@ pipeline {
        } 
    } 
   environment {
-         def BUILDVERSION = sh(script: "echo `date +%F-%T`", returnStdout: true).trim()
+         def BUILDVERSION = sh(script: 'echo `date +%F-%T', returnStdout: true).trim()
      } 
    stages { 
        stage('Checkout') { 
@@ -24,7 +24,7 @@ pipeline {
  stage('Test') { 
     steps { 
          script { 
-         withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) { 
+         withEnv(['CHROME_BIN=/usr/bin/chromium-browser']) { 
             sh 'ng test --progress=false --watch false' 
           } 
        }
